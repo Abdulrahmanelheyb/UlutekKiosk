@@ -1,0 +1,15 @@
+D:\MyProjects\Software_Engineer\DesktopApps\UlutekKiosk\Kiosk_Managment\bin\Debug\Kiosk_Managment.exe.config
+D:\MyProjects\Software_Engineer\DesktopApps\UlutekKiosk\Kiosk_Managment\bin\Debug\Kiosk_Managment.exe
+D:\MyProjects\Software_Engineer\DesktopApps\UlutekKiosk\Kiosk_Managment\bin\Debug\Kiosk_Managment.pdb
+D:\MyProjects\Software_Engineer\DesktopApps\UlutekKiosk\Kiosk_Managment\obj\Debug\Kiosk_Managment.csprojAssemblyReference.cache
+D:\MyProjects\Software_Engineer\DesktopApps\UlutekKiosk\Kiosk_Managment\obj\Debug\MainWindow.g.cs
+D:\MyProjects\Software_Engineer\DesktopApps\UlutekKiosk\Kiosk_Managment\obj\Debug\App.g.cs
+D:\MyProjects\Software_Engineer\DesktopApps\UlutekKiosk\Kiosk_Managment\obj\Debug\Kiosk_Managment_MarkupCompile.cache
+D:\MyProjects\Software_Engineer\DesktopApps\UlutekKiosk\Kiosk_Managment\obj\Debug\Kiosk_Managment_MarkupCompile.lref
+D:\MyProjects\Software_Engineer\DesktopApps\UlutekKiosk\Kiosk_Managment\obj\Debug\MainWindow.baml
+D:\MyProjects\Software_Engineer\DesktopApps\UlutekKiosk\Kiosk_Managment\obj\Debug\Kiosk_Managment.g.resources
+D:\MyProjects\Software_Engineer\DesktopApps\UlutekKiosk\Kiosk_Managment\obj\Debug\Kiosk_Managment.Properties.Resources.resources
+D:\MyProjects\Software_Engineer\DesktopApps\UlutekKiosk\Kiosk_Managment\obj\Debug\Kiosk_Managment.csproj.GenerateResource.cache
+D:\MyProjects\Software_Engineer\DesktopApps\UlutekKiosk\Kiosk_Managment\obj\Debug\Kiosk_Managment.csproj.CoreCompileInputs.cache
+D:\MyProjects\Software_Engineer\DesktopApps\UlutekKiosk\Kiosk_Managment\obj\Debug\Kiosk_Managment.exe
+D:\MyProjects\Software_Engineer\DesktopApps\UlutekKiosk\Kiosk_Managment\obj\Debug\Kiosk_Managment.pdb

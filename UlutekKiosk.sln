@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31112.23
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UlutekKiosk", "UlutekKiosk\UlutekKiosk.csproj", "{9FBD96C9-2671-42C9-94C2-8267A90A4395}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kiosk_Managment", "Kiosk_Managment\Kiosk_Managment.csproj", "{70015A41-CA10-4682-AE42-E93F2C4735D7}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9FBD96C9-2671-42C9-94C2-8267A90A4395}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9FBD96C9-2671-42C9-94C2-8267A90A4395}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9FBD96C9-2671-42C9-94C2-8267A90A4395}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9FBD96C9-2671-42C9-94C2-8267A90A4395}.Release|Any CPU.Build.0 = Release|Any CPU
+		{70015A41-CA10-4682-AE42-E93F2C4735D7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{70015A41-CA10-4682-AE42-E93F2C4735D7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{70015A41-CA10-4682-AE42-E93F2C4735D7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{70015A41-CA10-4682-AE42-E93F2C4735D7}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {6B891801-D13A-4ACF-B9E3-23C827FA69AB}
+	EndGlobalSection
+EndGlobal
