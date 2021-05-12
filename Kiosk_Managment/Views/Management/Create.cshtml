@@ -1,0 +1,55 @@
+﻿@model Kiosk_Managment.Models.Publication
+@{
+    ViewBag.Title = "Create";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    @Html.Partial("_Contents")
+</head>
+<body>
+    <div class="container"> 
+        <div class="row mx-auto mt-3 justify-content-center">
+            <div class="col-md-8 col-lg-4 align-self-center">
+                @Html.ActionLink("Back To Main", "Index", new { controller = "Management" }, new { @class = "btn btn-outline-primary my-3 px-5" })
+                @using (Html.BeginForm("Create", "Management", FormMethod.Post, new { @enctype = "multipart/form-data" }))
+                {
+                    <div class="form-row">
+                        <div class="col align-self-center">
+                            @Html.TextBoxFor(m => m.TimeOfView, new { @class = "form-control", @placeholder = "Time Of View", @type = "number" })
+                            @*<input class="form-control" type="number" name="TimeOfView" placeholder="Time Of View" />*@
+                            <input class="form-control mt-3" type="date" name="ExpiryDate"/>
+                        </div>
+                    </div>
+                    <div class="form-row mt-4">
+                        <div class="col align-self-center">
+                            <label for="Image">Choose Publication</label>
+                            <input class="form-control-file" name="Image" type="file" />
+                        </div>
+                    </div>
+                    <input class="btn-success mt-3 form-control" type="submit" value="Add" />
+                    if (ViewBag.Status == true)
+                    {
+                        <script>
+                            $(function () {
+                                setTimeout(function () {
+                                    $("#status-create").fadeOut(500);
+                                }, 3000);
+                            });
+                        </script>
+                        <div class="alert alert-success mt-3" id="status-create" role="alert">
+                            publication Added Successfully.
+                        </div>
+                    }
+                }
+            </div>
+        </div>
+        
+    </div>
+</body>
+</html>

@@ -1,0 +1,69 @@
+﻿@using UlutekKioskModels;
+@using System.Text;
+@model List<Kiosk_Managment.Models.Publication>
+@{
+    ViewBag.Title = "Kiosk Management";
+    Layout = null;
+}
+
+@{
+    var session = (User)Session["UserItem"];
+    if (session == null)
+    {
+
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <title>@ViewBag.Title</title>
+        @Html.Partial("_Contents")
+    </head>
+    <body>
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <h2>Welcome @*session.Username*@ !</h2>
+                    @Html.ActionLink("Add New", "Create", new { controller = "Management" }, new { @class = "btn btn-outline-success my-3 px-5" })
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th scope="col">ID</th>
+                                <th scope="col">Time Of View</th>
+                                <th scope="col">Expriy Date</th>
+                                <th scope="col">Image</th>
+                                <th scope="col" style="width: 200px;">Tools</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @{ 
+                                foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td class="align-middle">@item.ID</td>
+                                        <td class="align-middle">@(item.TimeOfView)s</td>
+                                        <td class="align-middle">@item.ExpiryDate.Date.ToShortDateString()</td>
+                                        <td><img width="140" height="200" class="rounded mx-auto d-block" src="data:image/png;base64,@(Encoding.UTF8.GetString(item.ImageData))"></td>
+                                        <td class="align-middle">
+                                            <a class="btn btn-warning mr-2" href="#" onclick="window.location = '@Url.Action("Update","Management", new { id=item.ID })'" role="button">Edit</a>
+                                            <button class="btn btn-danger mr-2" type="button" onclick="confirmDelete('@Url.Action("Delete",new { id=item.ID })')">Delete</button>
+                                        </td>
+                                    </tr>
+                                }
+                            }
+                            
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <script src="~/Scripts/managment.js"></script>
+    </body>
+    </html>
+    }
+    else
+    {
+    <h2>Access Denied !</h2>
+    }
+
+}
+
+
