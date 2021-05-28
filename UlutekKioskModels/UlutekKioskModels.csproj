@@ -90,7 +90,6 @@
     <Compile Include="Cryption.cs" />
     <Compile Include="Globals.cs" />
     <Compile Include="Mysqldb.cs" />
-    <Compile Include="MysqldbParam.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PublicationBase.cs" />
     <Compile Include="User.cs" />

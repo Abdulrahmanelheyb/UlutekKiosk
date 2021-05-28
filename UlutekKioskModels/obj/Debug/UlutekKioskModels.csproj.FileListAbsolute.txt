@@ -1,6 +1,5 @@
 D:\MyProjects\Software_Engineer\DesktopApps\UlutekKiosk\UlutekKioskModels\bin\Debug\UlutekKioskModels.dll
 D:\MyProjects\Software_Engineer\DesktopApps\UlutekKiosk\UlutekKioskModels\bin\Debug\UlutekKioskModels.pdb
-D:\MyProjects\Software_Engineer\DesktopApps\UlutekKiosk\UlutekKioskModels\obj\Debug\UlutekKioskModels.csprojAssemblyReference.cache
 D:\MyProjects\Software_Engineer\DesktopApps\UlutekKiosk\UlutekKioskModels\obj\Debug\UlutekKioskModels.csproj.CoreCompileInputs.cache
 D:\MyProjects\Software_Engineer\DesktopApps\UlutekKiosk\UlutekKioskModels\obj\Debug\UlutekKioskModels.dll
 D:\MyProjects\Software_Engineer\DesktopApps\UlutekKiosk\UlutekKioskModels\obj\Debug\UlutekKioskModels.pdb

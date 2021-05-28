@@ -14,8 +14,8 @@ namespace Kiosk_Managment
         {
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
-            //Mysqldb.ConnectionString = Mysqldb.GetConnectionString("192.168.2.184", "ulutek_kiosk", "ulutek", "Ulutek_0");
-            Mysqldb.ConnectionString = Mysqldb.GetConnectionString("localhost", "ulutek_kiosk", "schoolserver", "School+admin3");
+            Mysqldb.ConnectionString = Mysqldb.GetConnectionString("192.168.2.184", "ulutek_kiosk", "ulutek", "Ulutek_0");
+            //Mysqldb.ConnectionString = Mysqldb.GetConnectionString("localhost", "ulutek_kiosk", "dev", "developer@E#");
             Mysqldb.Open();
         }
     }

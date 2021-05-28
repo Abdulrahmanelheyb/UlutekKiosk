@@ -137,6 +137,7 @@
     <Content Include="Views\Management\Create.cshtml" />
     <Content Include="Views\Shared\_Contents.cshtml" />
     <Content Include="Views\Management\Update.cshtml" />
+    <None Include="Properties\PublishProfiles\IISProfile.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

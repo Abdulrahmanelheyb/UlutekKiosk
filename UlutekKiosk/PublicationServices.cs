@@ -15,23 +15,32 @@ namespace UlutekKiosk
     {
         public static List<Publication> GetPublications()
         {
-            // this method gets only continues publications
+            // This method gets only continues publications
             List<Publication> rlt = new List<Publication>();
 
+            //This Get publications with sql query.
             DataSet ds = Mysqldb.Select($"select * from publications where ExpiryDate>'{DateTime.Now.Date:yyyy-MM-dd}'");
 
+            //This Loop on dataset table rows.
             for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
             {
-
+                //This Get image bytes.
                 byte[] imgbyte = (byte[])ds.Tables[0].Rows[i]["Image"];
+
+                //This create instance MemoryStream with give image bytes.
                 using (MemoryStream ms = new MemoryStream(imgbyte))
                 {
-                    var imageSource = new BitmapImage();
+                    //This create new instance of BitmapImage and initialize image bytes.
+                    var imageSource = new BitmapImage
+                    {
+                        CreateOptions = BitmapCreateOptions.PreservePixelFormat
+                    };
                     imageSource.BeginInit();
                     imageSource.StreamSource = ms;
                     imageSource.CacheOption = BitmapCacheOption.OnLoad;
                     imageSource.EndInit();
 
+                    //This create new instance of publication and set properties.
                     Publication pub = new Publication
                     {
                         ID = Convert.ToInt32(ds.Tables[0].Rows[i]["ID"]),
@@ -40,36 +49,35 @@ namespace UlutekKiosk
                         ExpiryDate = Convert.ToDateTime(ds.Tables[0].Rows[i]["ExpiryDate"])
                     };
 
+                    // Add to list to return
                     rlt.Add(pub);
                 }
                 
             }
 
+            // Get Publications On Change Hashcode.
             PublicationBase.PublicationOnChange =
                 Mysqldb.Select("select * from tables_onchange where TableName='publications'").Tables[0].Rows[0]["Value"].ToString();
 
             return rlt;
         }
 
-        public static bool DeleteExpiredImage(int id)
-        {
-            bool rlt = Mysqldb.Delete($"delete from publications where ID={id}");
-            return rlt;
-        }
-
+        //This method check on change status.
         public static string OnChange()
         {
             string rlt = null;
+            //Get publications table hashcode.
             DataSet ds = Mysqldb.Select("select * from tables_onchange where TableName='publications'");
-            for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
+
+            if (ds.Tables[0].Rows.Count > 0)
             {
                 if (PublicationBase.PublicationOnChange == null)
                 {
-                    PublicationBase.PublicationOnChange = ds.Tables[0].Rows[i]["Value"].ToString();
+                    PublicationBase.PublicationOnChange = ds.Tables[0].Rows[0]["Value"].ToString();
                 }
                 else
                 {
-                    string poc = ds.Tables[0].Rows[i]["Value"].ToString();
+                    string poc = ds.Tables[0].Rows[0]["Value"].ToString();
                     if (poc != PublicationBase.PublicationOnChange)
                     {
                         rlt = poc;

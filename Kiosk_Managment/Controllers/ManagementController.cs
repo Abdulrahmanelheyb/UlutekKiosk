@@ -7,12 +7,22 @@ using System.Web.Mvc;
 using UlutekKioskModels;
 using Kiosk_Managment.Models;
 using System.Data;
+using MySql.Data.MySqlClient;
+using System.Security.Cryptography;
 
 namespace Kiosk_Managment.Controllers
 {
     public class ManagementController : Controller
     {
-        // GET: Management
+
+        private bool PublicationsOnChange(int ObjectHashCode)
+        {
+            using (SHA256 sha256 = SHA256.Create())
+            {
+                string hashedcode = Cryption.Encrypt(sha256, Convert.ToBase64String(BitConverter.GetBytes(ObjectHashCode)));
+                return Mysqldb.Update($"update tables_onchange set Value='{hashedcode}' where TableName='publications'");
+            }
+        }
 
         public ActionResult Index()
         {
@@ -21,11 +31,9 @@ namespace Kiosk_Managment.Controllers
             if (Session["UserItem"] != null)
             {
                 rlt = true;
-                
-                
             }
 
-            DataSet ds = Mysqldb.Select("select * from publications"); 
+            DataSet ds = Mysqldb.Select($"select * from publications where ExpiryDate>='{DateTime.Now.Date:yyyy-MM-dd}' order by ExpiryDate"); 
             for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
             {
                 Publication pub = new Publication();
@@ -48,17 +56,51 @@ namespace Kiosk_Managment.Controllers
         [HttpPost]
         public ActionResult Create(Publication publication)
         {
-            using (Stream istream = publication.Image.InputStream)
+            string Message;
+            if (publication.Image != null)
             {
-                MemoryStream ms = new MemoryStream();
-                publication.Image.InputStream.CopyTo(ms);
-                byte[] image = ms.ToArray();
-                bool rlt = Mysqldb.Insert($"insert into publications(TimeOfView,ExpiryDate,Image) " +
-                    $"values('{publication.TimeOfView}','{publication.ExpiryDate.Date:yyyy-MM-dd}','{Convert.ToBase64String(image,Base64FormattingOptions.None)}')");
-                if (rlt)
+                using (Stream istream = publication.Image.InputStream)
                 {
-                    ViewBag.Status = true;
+                    using (MemoryStream ms = new MemoryStream())
+                    {
+                        publication.Image.InputStream.CopyTo(ms);
+                        byte[] image = ms.ToArray();
+
+                        var Parameters = new List<MySqlParameter>();
+                        string TimeOfViewParam = "default";
+                        if (publication.TimeOfView > 0)
+                        {
+                            TimeOfViewParam = "@tov";
+                            Parameters.Add(new MySqlParameter("@tov", publication.TimeOfView));
+                        }
+
+                        if (publication.ExpiryDate < DateTime.Now.Date)
+                        {
+                            ViewBag.Status = false;
+                            ViewBag.StatusMessage = Message = "Please input Expiry Date.";
+                            return View();
+                        }
+
+                        Parameters.AddRange(new MySqlParameter[]
+                        {
+                            new MySqlParameter("@expdate", publication.ExpiryDate.Date.ToString("yyyy-MM-dd")),
+                            new MySqlParameter("@image", image)
+                        });
+                        if (Mysqldb.Insert($"insert into publications(TimeOfView,ExpiryDate,Image) values({TimeOfViewParam},@expdate,@image)", Parameters))
+                        {
+                            ViewBag.Status = true;
+                            ViewBag.StatusMessage = Message = "Publication Added Successfully.";
+                            PublicationsOnChange(publication.GetHashCode());
+                        }
+                    }
+                    
                 }
+            }
+            else
+            {
+                ViewBag.Status = false;
+                Message = "Publication adding failed.";
+                ViewBag.StatusMessage = Message;
             }
             return View();
         }
@@ -75,6 +117,7 @@ namespace Kiosk_Managment.Controllers
                     pub.ID = Convert.ToInt32(ds.Tables[0].Rows[0]["ID"].ToString());
                     pub.TimeOfView = Convert.ToInt32(ds.Tables[0].Rows[0]["TimeOfView"].ToString());
                     pub.ExpiryDate = Convert.ToDateTime(ds.Tables[0].Rows[0]["ExpiryDate"].ToString());
+                    PublicationsOnChange(pub.GetHashCode());
                 }
 
                 return View(pub);
@@ -91,6 +134,7 @@ namespace Kiosk_Managment.Controllers
             {
                 ViewBag.Status = true;
                 TempData["ID"] = publication.ID;
+                PublicationsOnChange(publication.GetHashCode());
             }
             return View(publication);
         }
@@ -98,6 +142,11 @@ namespace Kiosk_Managment.Controllers
         public ActionResult Delete(int id)
         {
             Mysqldb.Delete($"delete from publications where ID={id}");
+            Publication pub = new Publication
+            {
+                ID = id
+            };
+            PublicationsOnChange(pub.GetHashCode());
             return RedirectToAction("Index", "Management");
         }
     }

@@ -36,3 +36,6 @@ D:\MyProjects\Software_Engineer\DesktopApps\UlutekKiosk\UlutekKiosk\bin\Debug\Sy
 D:\MyProjects\Software_Engineer\DesktopApps\UlutekKiosk\UlutekKiosk\bin\Debug\System.Numerics.Vectors.xml
 D:\MyProjects\Software_Engineer\DesktopApps\UlutekKiosk\UlutekKiosk\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
 D:\MyProjects\Software_Engineer\DesktopApps\UlutekKiosk\UlutekKiosk\obj\Debug\UlutekKiosk.csproj.CopyComplete
+D:\MyProjects\Software_Engineer\DesktopApps\UlutekKiosk\UlutekKiosk\bin\Debug\UlutekKioskModels.dll
+D:\MyProjects\Software_Engineer\DesktopApps\UlutekKiosk\UlutekKiosk\bin\Debug\UlutekKioskModels.pdb
+D:\MyProjects\Software_Engineer\DesktopApps\UlutekKiosk\UlutekKiosk\bin\Debug\UlutekKioskModels.dll.config

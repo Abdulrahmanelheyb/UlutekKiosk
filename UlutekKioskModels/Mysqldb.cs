@@ -57,11 +57,35 @@ namespace UlutekKioskModels
             return rlt;
         }
 
+        public static bool Insert(string query, List<MySqlParameter> parameters)
+        {
+            bool rlt = false;
+            using (MySqlCommand cmd = new MySqlCommand(query, Connection))
+            {
+                cmd.Parameters.AddRange(parameters.ToArray());
+                 cmd.ExecuteNonQuery();
+                rlt = true;
+            }
+            return rlt;
+        }
+
         public static bool Update(string query)
         {
             bool rlt = false;
             using (MySqlCommand cmd = new MySqlCommand(query, Connection))
             {
+                cmd.ExecuteNonQuery();
+                rlt = true;
+            }
+            return rlt;
+        }
+
+        public static bool Update(string query, List<MySqlParameter> parameters)
+        {
+            bool rlt = false;
+            using (MySqlCommand cmd = new MySqlCommand(query, Connection))
+            {
+                cmd.Parameters.AddRange(parameters.ToArray());
                 cmd.ExecuteNonQuery();
                 rlt = true;
             }
