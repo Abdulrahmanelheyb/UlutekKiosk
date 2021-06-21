@@ -17,39 +17,50 @@
     <div class="container">
         @{
             var session = (User)Session["UserItem"];
-            if (session == null)
+            if (session != null)
             {
                 if ((int)TempData["ID"] > 0)
                 {
 
                     <div class="row mx-auto mt-3 justify-content-center">
-                        <div class="col-md-8 col-lg-4 align-self-center">
-                            @Html.ActionLink("Back To Main", "Index", new { controller = "Management" }, new { @class = "btn btn-outline-primary my-3 px-5" })
-                            @using (Html.BeginForm("Update", "Management"))
-                            {
-                                <div class="form-row">
-                                    <div class="col align-self-center">
-                                        <input name="ID" value="@Model.ID" hidden disabled />
-                                        @Html.TextBoxFor(m => m.TimeOfView, new { @class = "form-control", @placeholder = "Time Of View", @type = "number" })
-                                        <input class="form-control mt-3" type="date" name="ExpiryDate" value="@(Model.ExpiryDate.Date.ToString("yyyy-MM-dd"))" />
-                                    </div>
+                                <div class="col-md-8 col-lg-4 align-self-center">
+                                    @Html.ActionLink("Back To Main", "Index", new { controller = "Management" }, new { @class = "btn btn-outline-primary my-3 px-5" })
+                                    @using (Html.BeginForm("Update", "Management"))
+                                    {
+                                        <div class="form-row">
+                                            <div class="col align-self-center">
+                                                <input name="ID" value="@Model.ID" hidden disabled />
+                                                @Html.TextBoxFor(m => m.TimeOfView, new { @class = "form-control", @placeholder = "Time Of View", @type = "number" })
+                                                <input class="form-control mt-3" type="date" name="ExpiryDate" value="@(Model.ExpiryDate.Date.ToString("yyyy-MM-dd"))" />
+                                            </div>
+                                        </div>
+                                        <input class="btn-warning mt-3 form-control" type="submit" value="Update" />
+                                        if (ViewBag.Status != null)
+                                        {
+                                            <script>
+                                                $(function () {
+                                                    setTimeout(function () {
+                                                        $("#status-create").fadeOut(500);
+                                                    }, 3000);
+                                                });
+                                            </script>
+
+                                            if (ViewBag.Status == true)
+                                            {
+
+                                                <div class="alert alert-success mt-3" id="status-create" role="alert">
+                                                    @ViewBag.StatusMessage
+                                                </div>
+                                            }
+                                            else
+                                            {
+                                                <div class="alert alert-danger mt-3" id="status-create" role="alert">
+                                                    @ViewBag.StatusMessage
+                                                </div>
+                                            }
+                                        }
+                                    }
                                 </div>
-                                <input class="btn-warning mt-3 form-control" type="submit" value="Update" />
-                                if (ViewBag.Status == true)
-                                {
-                                    <script>
-                                        $(function () {
-                                            setTimeout(function () {
-                                                $("#status-create").fadeOut(500);
-                                            }, 3000);
-                                        });
-                                    </script>
-                                    <div class="alert alert-success mt-3" id="status-create" role="alert">
-                                        publication Updated Successfully.
-                                    </div>
-                                }
-                            }
-                        </div>
                     </div>
                 }
                 else

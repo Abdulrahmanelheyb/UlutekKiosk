@@ -8,7 +8,8 @@
         Title="MainWindow" WindowStyle="None" WindowStartupLocation="Manual" ResizeMode="NoResize" WindowState="Maximized">
     <Grid>
         <Image Name="SlaytShow" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="0,0,0,10"/>
-        <ProgressBar Name="SlaytShowProgress" Height="10" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" BorderBrush="White" BorderThickness="0,1,0,0" Foreground="#FF3F9FB4">
+        <Label Name="PublicationNumber" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="5,0,0,15"/>
+        <ProgressBar Name="SlaytShowProgress" Height="10" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" BorderBrush="White" BorderThickness="0,1,0,0" Foreground="#FF3F9FB4" Value="-0.1">
             <ProgressBar.Background>
                 <SolidColorBrush Color="Black"/>
             </ProgressBar.Background>

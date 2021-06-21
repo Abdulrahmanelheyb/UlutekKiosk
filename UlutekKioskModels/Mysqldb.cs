@@ -8,12 +8,9 @@ using MySql.Data.MySqlClient;
 
 namespace UlutekKioskModels
 {
-    public class Mysqldb
+    public static class Mysqldb
     {
-        public static MySqlConnection Connection = null;
-        public static string ConnectionString {get; set;}
-        public static ConnectionState State { get { return Connection.State; } }
-
+        private static MySqlConnection Connection;
         public static bool Open()
         {
             bool rlt;
@@ -21,7 +18,7 @@ namespace UlutekKioskModels
             {
                 if (Connection == null)
                 {
-                    Connection = new MySqlConnection(ConnectionString);
+                    Connection = new MySqlConnection(Globals.ConnectionString);
                 }
 
                 Connection.Open();
@@ -35,12 +32,25 @@ namespace UlutekKioskModels
             return rlt;
         }
 
+        public static void CheckConnection(MySqlCommand cmd = null, MySqlDataAdapter adapter = null)
+        {
+            if (cmd != null && cmd.Connection.State != ConnectionState.Open)
+            {
+                cmd.Connection.Open();
+            }
+
+            if (adapter != null && adapter.SelectCommand.Connection.State != ConnectionState.Open)
+            {
+                adapter.SelectCommand.Connection.Open();
+            }
+        }
+
         public static DataSet Select(string query)
         {
             DataSet rlt = new DataSet();
-            using (MySqlCommand cmd = new MySqlCommand(query, Connection))
+            using (MySqlDataAdapter da = new MySqlDataAdapter(query, Connection))
             {
-                MySqlDataAdapter da = new MySqlDataAdapter(cmd);
+                CheckConnection(adapter: da);
                 da.Fill(rlt);
             }
             return rlt;
@@ -51,6 +61,7 @@ namespace UlutekKioskModels
             bool rlt = false;
             using (MySqlCommand cmd = new MySqlCommand(query, Connection))
             {
+                CheckConnection(cmd: cmd);
                 cmd.ExecuteNonQuery();
                 rlt = true;
             }
@@ -62,8 +73,9 @@ namespace UlutekKioskModels
             bool rlt = false;
             using (MySqlCommand cmd = new MySqlCommand(query, Connection))
             {
+                CheckConnection(cmd: cmd);
                 cmd.Parameters.AddRange(parameters.ToArray());
-                 cmd.ExecuteNonQuery();
+                cmd.ExecuteNonQuery();
                 rlt = true;
             }
             return rlt;
@@ -74,6 +86,7 @@ namespace UlutekKioskModels
             bool rlt = false;
             using (MySqlCommand cmd = new MySqlCommand(query, Connection))
             {
+                CheckConnection(cmd: cmd);
                 cmd.ExecuteNonQuery();
                 rlt = true;
             }
@@ -85,6 +98,7 @@ namespace UlutekKioskModels
             bool rlt = false;
             using (MySqlCommand cmd = new MySqlCommand(query, Connection))
             {
+                CheckConnection(cmd: cmd);
                 cmd.Parameters.AddRange(parameters.ToArray());
                 cmd.ExecuteNonQuery();
                 rlt = true;
@@ -97,23 +111,11 @@ namespace UlutekKioskModels
             bool rlt = false;
             using (MySqlCommand cmd = new MySqlCommand(query, Connection))
             {
+                CheckConnection(cmd: cmd);
                 cmd.ExecuteNonQuery();
                 rlt = true;
             }
             return rlt;
         }
-
-        public static string GetConnectionString(string ServerIP, string Database, string Username, string Pwd)
-        {
-            string rlt = $"Server={ServerIP};Database={Database};Uid={Username};Pwd={Pwd};";
-            ConnectionString = rlt;
-            return rlt;
-        }
-
-        public static void Close()
-        {
-            Connection.Close();
-        }
-
     }   
 }   

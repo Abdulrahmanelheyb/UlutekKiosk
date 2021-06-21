@@ -48,8 +48,6 @@ namespace UlutekKiosk
             InitializeComponent();
 
             // Initialize mysql database connection.
-            //Mysqldb.ConnectionString = Mysqldb.GetConnectionString("localhost", "ulutek_kiosk", "dev", "developer@E#");
-            Mysqldb.ConnectionString = Mysqldb.GetConnectionString($"{Properties.Settings.Default.IP}", "ulutek_kiosk", "ulutek", "Ulutek_0");
             Mysqldb.Open();
 
 
@@ -60,7 +58,7 @@ namespace UlutekKiosk
             if (publications.Count > 0)
             {
                 //Check first publication expiry date is expired or not.
-                if (publications[0].ExpiryDate <= DateTime.Now)
+                if (publications[0].ExpiryDate < DateTime.Now.Date)
                 {
                     //Remove first publication from list
                     publications.RemoveAt(0);
@@ -128,7 +126,7 @@ namespace UlutekKiosk
             if (publications.Count > 0)
             {
                 // Check publication expiry date.
-                if (publications[pubIndx].ExpiryDate <= DateTime.Now)
+                if (publications[pubIndx].ExpiryDate < DateTime.Now.Date)
                 {
                     publications.RemoveAt(pubIndx);
                     if (!ResetCountIndex())

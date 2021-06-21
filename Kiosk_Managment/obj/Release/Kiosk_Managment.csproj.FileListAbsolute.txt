@@ -33,3 +33,14 @@ D:\MyProjects\Software_Engineer\DesktopApps\UlutekKiosk\Kiosk_Managment\obj\Rele
 D:\MyProjects\Software_Engineer\DesktopApps\UlutekKiosk\Kiosk_Managment\obj\Release\Kiosk_Managment.csproj.CopyComplete
 D:\MyProjects\Software_Engineer\DesktopApps\UlutekKiosk\Kiosk_Managment\obj\Release\Kiosk_Managment.dll
 D:\MyProjects\Software_Engineer\DesktopApps\UlutekKiosk\Kiosk_Managment\obj\Release\Kiosk_Managment.pdb
+D:\MyProjects\Software_Engineer\DesktopApps\UlutekKiosk\Kiosk_Managment\bin\Google.Protobuf.dll
+D:\MyProjects\Software_Engineer\DesktopApps\UlutekKiosk\Kiosk_Managment\bin\K4os.Compression.LZ4.dll
+D:\MyProjects\Software_Engineer\DesktopApps\UlutekKiosk\Kiosk_Managment\bin\K4os.Compression.LZ4.Streams.dll
+D:\MyProjects\Software_Engineer\DesktopApps\UlutekKiosk\Kiosk_Managment\bin\System.Runtime.CompilerServices.Unsafe.dll
+D:\MyProjects\Software_Engineer\DesktopApps\UlutekKiosk\Kiosk_Managment\bin\Google.Protobuf.pdb
+D:\MyProjects\Software_Engineer\DesktopApps\UlutekKiosk\Kiosk_Managment\bin\Google.Protobuf.xml
+D:\MyProjects\Software_Engineer\DesktopApps\UlutekKiosk\Kiosk_Managment\bin\K4os.Compression.LZ4.xml
+D:\MyProjects\Software_Engineer\DesktopApps\UlutekKiosk\Kiosk_Managment\bin\K4os.Compression.LZ4.Streams.xml
+D:\MyProjects\Software_Engineer\DesktopApps\UlutekKiosk\Kiosk_Managment\bin\System.Memory.xml
+D:\MyProjects\Software_Engineer\DesktopApps\UlutekKiosk\Kiosk_Managment\bin\System.Numerics.Vectors.xml
+D:\MyProjects\Software_Engineer\DesktopApps\UlutekKiosk\Kiosk_Managment\bin\System.Runtime.CompilerServices.Unsafe.xml

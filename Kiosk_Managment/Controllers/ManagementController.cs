@@ -56,7 +56,6 @@ namespace Kiosk_Managment.Controllers
         [HttpPost]
         public ActionResult Create(Publication publication)
         {
-            string Message;
             if (publication.Image != null)
             {
                 using (Stream istream = publication.Image.InputStream)
@@ -77,7 +76,7 @@ namespace Kiosk_Managment.Controllers
                         if (publication.ExpiryDate < DateTime.Now.Date)
                         {
                             ViewBag.Status = false;
-                            ViewBag.StatusMessage = Message = "Please input Expiry Date.";
+                            ViewBag.StatusMessage = "Please input Expiry Date.";
                             return View();
                         }
 
@@ -89,7 +88,7 @@ namespace Kiosk_Managment.Controllers
                         if (Mysqldb.Insert($"insert into publications(TimeOfView,ExpiryDate,Image) values({TimeOfViewParam},@expdate,@image)", Parameters))
                         {
                             ViewBag.Status = true;
-                            ViewBag.StatusMessage = Message = "Publication Added Successfully.";
+                            ViewBag.StatusMessage = "Publication Added Successfully.";
                             PublicationsOnChange(publication.GetHashCode());
                         }
                     }
@@ -99,8 +98,7 @@ namespace Kiosk_Managment.Controllers
             else
             {
                 ViewBag.Status = false;
-                Message = "Publication adding failed.";
-                ViewBag.StatusMessage = Message;
+                ViewBag.StatusMessage = "Publication adding failed.";
             }
             return View();
         }
@@ -129,10 +127,31 @@ namespace Kiosk_Managment.Controllers
         [HttpPost]
         public ActionResult Update(Publication publication)
         {
-            bool rlt = Mysqldb.Update($"update publications set TimeOfView='{publication.TimeOfView}',ExpiryDate='{publication.ExpiryDate:yyyy-MM-dd}' where ID='{publication.ID}'");
+            List<MySqlParameter> parameters = new List<MySqlParameter>();
+            string TimeOfViewParam = "@tov";
+
+            if (publication.TimeOfView > 0)
+            {
+                parameters.Add(new MySqlParameter("@tov", publication.TimeOfView));
+            }
+            else
+            {
+                TimeOfViewParam = "default";
+            }
+
+            if (publication.ExpiryDate < DateTime.Now.Date)
+            {
+                ViewBag.Status = false;
+                ViewBag.StatusMessage = "Please input Expiry Date.";
+                return View();
+            }
+
+            parameters.Add(new MySqlParameter("@expdate", publication.ExpiryDate));
+            bool rlt = Mysqldb.Update($"update publications set TimeOfView={TimeOfViewParam}, ExpiryDate=@expdate where ID={publication.ID}", parameters);
             if (rlt)
             {
                 ViewBag.Status = true;
+                ViewBag.StatusMessage = "Publication Updated Successfully.";
                 TempData["ID"] = publication.ID;
                 PublicationsOnChange(publication.GetHashCode());
             }

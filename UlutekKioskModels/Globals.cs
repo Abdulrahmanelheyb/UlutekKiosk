@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace UlutekKioskModels
 {
-    public static class Globals
+    internal static class Globals
     {
-        
+        public static readonly string ConnectionString = $"Server={Properties.Settings.Default.IP};Database=ulutek_kiosk;Uid=ulutek;Pwd=Ulutek_0;";
     }
 }

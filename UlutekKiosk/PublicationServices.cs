@@ -19,7 +19,7 @@ namespace UlutekKiosk
             List<Publication> rlt = new List<Publication>();
 
             //This Get publications with sql query.
-            DataSet ds = Mysqldb.Select($"select * from publications where ExpiryDate>'{DateTime.Now.Date:yyyy-MM-dd}'");
+            DataSet ds = Mysqldb.Select($"select * from publications where ExpiryDate>='{DateTime.Now.Date:yyyy-MM-dd}'");
 
             //This Loop on dataset table rows.
             for (int i = 0; i < ds.Tables[0].Rows.Count; i++)

@@ -27,3 +27,6 @@ D:\MyProjects\Software_Engineer\DesktopApps\UlutekKiosk\UlutekKioskModels\bin\De
 D:\MyProjects\Software_Engineer\DesktopApps\UlutekKiosk\UlutekKioskModels\bin\Debug\System.Numerics.Vectors.xml
 D:\MyProjects\Software_Engineer\DesktopApps\UlutekKiosk\UlutekKioskModels\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
 D:\MyProjects\Software_Engineer\DesktopApps\UlutekKiosk\UlutekKioskModels\obj\Debug\UlutekKioskModels.csproj.CopyComplete
+D:\MyProjects\Software_Engineer\DesktopApps\UlutekKiosk\UlutekKioskModels\obj\Debug\UlutekKioskModels.csproj.AssemblyReference.cache
+D:\MyProjects\Software_Engineer\DesktopApps\UlutekKiosk\UlutekKioskModels\bin\Debug\Dapper.dll
+D:\MyProjects\Software_Engineer\DesktopApps\UlutekKiosk\UlutekKioskModels\bin\Debug\Dapper.xml
